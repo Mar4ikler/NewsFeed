@@ -4,13 +4,6 @@ spring:
     username: mark
     password: 1111
     driver-class-name: org.postgresql.Driver
-    hikari:
-      connection-init-sql: SELECT 1
-      connection-test-query: SELECT 1
-      validation-timeout: 3000
-      connection-timeout: 5000
-      maximum-pool-size: 2
-      minimum-idle: 1
   jpa:
     show-sql: true
     hibernate:
@@ -18,9 +11,9 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: false
-    drop-first: false
+    drop-first: true
     default-schema: public
 logging:
   level:
     com.zaxxer.hikari: DEBUG
-    #liquibase: DEBUG
+    liquibase: DEBUG
