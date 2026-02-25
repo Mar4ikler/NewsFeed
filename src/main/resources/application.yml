@@ -16,4 +16,4 @@ spring:
 logging:
   level:
     com.zaxxer.hikari: DEBUG
-    liquibase: DEBUG
+    #liquibase: DEBUG
