@@ -1,6 +1,7 @@
 package app.services;
 
 import app.dto.NewsDto;
+import app.dto.NewsResponseDto;
 import app.entity.Category;
 import app.entity.News;
 import app.repositories.CategoryRepository;
@@ -17,8 +18,20 @@ import java.util.Collection;
 public class NewsService implements CRUDService<NewsDto> {
 
     private final NewsRepository newsRepository;
-    private final CategoryService categoryService;
     private final CategoryRepository categoryRepository;
+
+    public NewsResponseDto getById1(Long id) {
+        News news = newsRepository.findById(id).orElseThrow();
+
+        NewsResponseDto newsResponseDto = new NewsResponseDto();
+        newsResponseDto.setId(news.getId());
+        newsResponseDto.setText(news.getText());
+        newsResponseDto.setTitle(news.getTitle());
+        newsResponseDto.setDate(news.getDate());
+        newsResponseDto.setCategory(CategoryService.toCategoryDto(news.getCategory()));
+
+        return newsResponseDto;
+    }
 
     @Override
     public NewsDto getById(Long id) {

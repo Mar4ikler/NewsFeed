@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.dto.NewsDto;
+import app.dto.NewsResponseDto;
 import app.services.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class NewsController {
     private final NewsService newsService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<NewsDto> getNewsById(@PathVariable("id") Long id) {
-        NewsDto newsDto = newsService.getById(id);
+    public ResponseEntity<NewsResponseDto> getNewsById(@PathVariable("id") Long id) {
+        NewsResponseDto newsDto = newsService.getById1(id);
         if (newsDto != null) {
             return ResponseEntity.ok(newsDto);
         } else {
